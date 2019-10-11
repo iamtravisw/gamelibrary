@@ -1,16 +1,59 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="sidebar">
-    <NavMenu />
-</div>
+    <div class="main">
+        <!-- NavBar -->
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #563d7c;">
+            <a class="navbar-brand" href="/">
+                <img src="https://i.imgur.com/eIcoo6V.png" width="225" height="30" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-<div class="main">
-    <div class="top-row px-4">
-        <LoginDisplay />
-        <a href="https://docs.microsoft.com/en-us/aspnet/" target="_blank">About</a>
-    </div>
+                <ul class="navbar-nav ml-auto">
 
-    <div class="content px-4">
-        @Body
+                    <li class="nav">
+                        <a class="nav-link active" href="/">Home</a>
+                    </li>
+
+                    <li class="nav">
+                        <a class="nav-link" href="/browse">Browse</a>
+                    </li>
+
+                    <li class="nav">
+                        <a class="nav-link" href="/profile">Profile</a>
+                    </li>
+
+                    <li class="nav dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            More
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">About</a>
+                            <a class="dropdown-item" href="#">Roulette</a>
+                            <a class="dropdown-item" href="#">Version</a>
+                        </div>
+                    </li>
+
+                    <LoginDisplay />
+
+                </ul>
+            </div>
+        </nav>
+        <!-- End NavBar -->
+
+        <div class="content px-4">
+            @Body
+        </div>
+
+        <footer>
+            <container-fluid>
+                <hr />
+                <center>
+                    <p>&copy; @DateTime.Now.Year <a href="https://iamtravisw.com">Travis Woodward</a> via GameLibrary  - Game data freely provided by <img src="https://i.imgur.com/cc7M6Rx.png" alt="IGDB.com" height="20" width="20"> <a href="https://igdb.com">IGDB.com</a></p>
+                </center>
+            </container-fluid>
+        </footer>
+
     </div>
-</div>
