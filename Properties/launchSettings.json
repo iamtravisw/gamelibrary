@@ -2,11 +2,11 @@
   "profiles": {
     "gamelibrary": {
       "commandName": "Project",
-      "launchBrowser": false,
       "environmentVariables": {
+        "USER-KEY": "546360798c27786ba7f806eaf2d417be",
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://TRAVISWOODWF926:5001;http://TRAVISWOODWF926:5000" // This is for local parallels development
+      "applicationUrl": "https://TRAVISWOODWF926:5001;http://TRAVISWOODWF926:5000"
     }
   }
 }

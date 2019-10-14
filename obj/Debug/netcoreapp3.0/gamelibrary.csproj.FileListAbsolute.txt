@@ -300,3 +300,5 @@ Y:\Code\gamelibrary\obj\Debug\netcoreapp3.0\Razor\Pages\Index.razor.g.cs
 Y:\Code\gamelibrary\obj\Debug\netcoreapp3.0\Razor\Shared\LoginDisplay.razor.g.cs
 Y:\Code\gamelibrary\obj\Debug\netcoreapp3.0\Razor\Shared\MainLayout.razor.g.cs
 Y:\Code\gamelibrary\obj\Debug\netcoreapp3.0\Razor\_Imports.razor.g.cs
+Y:\Code\gamelibrary\obj\Debug\netcoreapp3.0\RazorDeclaration\Pages\Browse.razor.g.cs
+Y:\Code\gamelibrary\obj\Debug\netcoreapp3.0\Razor\Pages\Browse.razor.g.cs
