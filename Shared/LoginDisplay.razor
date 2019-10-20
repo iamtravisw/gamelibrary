@@ -1,12 +1,13 @@
-﻿<AuthorizeView>
+﻿
+<AuthorizeView>
     <Authorized>
         <li class="nav">
             <a class="nav-link text-light" href="Identity/Account/Manage">Hello, @context.User.Identity.Name!</a>
-            <form method="post" action="Identity/Account/LogOut">
+            <form method="get" action="Identity/Account/Logout">
                 <button type="submit" class="btn btn-info"><i class="fas fa-sign-out-alt"></i> Log out</button>
             </form>
         </li>
-</Authorized>
+    </Authorized>
     <NotAuthorized>
         <li class="nav">
             <a class="btn btn-info btn-default" href="Identity/Account/Register"><i class="fas fa-user"></i> Register</a>
