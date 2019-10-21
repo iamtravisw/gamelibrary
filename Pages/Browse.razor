@@ -20,6 +20,8 @@
         // GameServices to obtain data from the server.
         Games = await GameServices.GetGamesBasedOnSearch(GameName);
     }
+
+
 }
 
 <!-- Search Bar -->
@@ -63,20 +65,22 @@ else
                             <a href="@game.url" target="_blank"><img src="@game.cover.LargeImageUrl()" alt="View on IGDB"></a>
                             <div class="caption">
                                 <h5>@game.name (@releaseDate.ToString("yyyy"))</h5>
-                                <a href="#" class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#mine#@game.id"><i class="fas fa-star"></i> Mine</a>
-                                <a href="#" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#love#@game.id"><i class="fas fa-heart"></i> Love</a>
-                                <a href="#" class="btn btn-sm btn-outline-info" data-toggle="modal" data-target="#want#@game.id"><i class="fas fa-gift"></i> Want</a>
+                                <button type="button" class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#modalMine-@game.id">
+                                    <i class="fas fa-star"></i> Mine
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#modalLove-@game.id">
+                                    <i class="fas fa-heart"></i> Love
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-info" data-toggle="modal" data-target="#modalWant-@game.id">
+                                    <i class="fas fa-gift"></i> Want
+                                </button>
                                 <h6>0 collectors have this game.</h6>
                             </div>
                         </div>
                     </div>
 
-
-
-
-
-                    <!-- Modal for Mine -->
-                    <div class="modal fade" id="mine#@game.id" tabindex="-1" role="dialog" aria-labelledby="mine" aria-hidden="true">
+                    <!-- Model for Mine -->
+                    <div class="modal fade" id="modalMine-@game.id" tabindex="-1" role="dialog" aria-labelledby="mineModal" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -101,19 +105,15 @@ else
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     <!-- TODO: Add an if statement, so that if they only have one collection do not show them the drop-up menu -->
 
-
-
-
                                     <div class="btn-group dropup">
-
                                         <AuthorizeView>
                                             <Authorized>
-                                                <button type="button" class="btn btn-info disabled" data-placement="top" title="You must be logged in to collect games">
+                                                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     Save
                                                 </button>
                                             </Authorized>
                                             <NotAuthorized>
-                                                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <button type="button" class="btn btn-info disabled" data-placement="top" title="You must be logged in to collect games">
                                                     Save
                                                 </button>
                                             </NotAuthorized>
@@ -122,6 +122,7 @@ else
                                         <div class="dropdown-menu">
                                             &nbsp; &nbsp; Select a collection to save to...
                                             <div class="dropdown-divider"></div>
+                                         
                                             <form asp-action="AddGame" asp-controller="Collect" method="post" id="#addGame">
                                                 <input type="hidden" asp-for="GameId" value="@game.id" />
                                                 <input type="hidden" asp-for="Shared" value="N" />
@@ -138,6 +139,7 @@ else
                                                 <input type="hidden" asp-for="UserId" value="0" /> <!-- Def need to change this later -->
                                                 <button type="submit" class="dropdown-item btn btn-block">Default</button>
                                             </form>
+                                            
                                             <a class="dropdown-item" href="#">Prized Collection <small>(Shared with LuWuXP)</small></a>
                                         </div>
                                     </div>
@@ -172,64 +174,7 @@ else
 
 
 
-                    <!-- Modal for Love -->
-                    <div class="modal fade" id="love#@game.id" tabindex="-1" role="dialog" aria-labelledby="mine" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Add @game.name to Favorites <i class="fas fa-heart text-danger"></i></h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Which console(s) would you like to favorite @game.name for?<br></p>
-                                    @foreach (var platform in game.platforms)
-                                    {
-                                        <ul class="list-group">
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                @platform.name
-                                                <input type="checkbox">
-                                            </li>
-                                        </ul>
-                                    }
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-info">Save</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Modal for Love -->
-                    <div class="modal fade" id="want#@game.id" tabindex="-1" role="dialog" aria-labelledby="mine" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Add @game.name to Wish List <i class="fas fa-gift text-primary"></i></h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Which console(s) would you like to Wish List @game.name for?<br></p>
-                                    @foreach (var platform in game.platforms)
-                                    {
-                                        <ul class="list-group">
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                @platform.name
-                                                <input type="checkbox">
-                                            </li>
-                                        </ul>
-                                    }
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-info">Save</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                     <!-- End Modals -->
                 }
             </div>
